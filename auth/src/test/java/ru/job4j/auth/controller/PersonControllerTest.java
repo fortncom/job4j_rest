@@ -41,7 +41,11 @@ public class PersonControllerTest {
     @Test
     @WithMockUser
     public void whenGetPersonNonExistentIdThenStatus404() throws Exception {
-        this.mockMvc.perform(get("/person/1")
+        for (Person person : pc.findAll()) {
+            System.out.println(person);
+        }
+        System.out.println();
+        this.mockMvc.perform(get("/person/2")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
